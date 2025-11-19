@@ -9,6 +9,12 @@ export default function FormValidation(){
 
 
 const [isFormSent , setIsFormSent] = useState('false');
+const validateform =()=>{
+    const nameValue = name.current.value;
+        const emailValue = email.current.value;
+        const messageValue = message.current.value;
+        const acceptAllConditionsValue = acceptAllConditions.current.checked;
+}
 const resetForm = () =>{
     name.current.value = ""
     email.current.value = ""
@@ -32,11 +38,11 @@ const resetForm = () =>{
     }
 return(
     <div className={'container-fluid w-75 mx-auto my-5'}>
-        {isFormSent?
+        {isFormSent ?
         <div className="alert alert-succes">
-            <strong>Success</strong> Message sent successfuly !!
+            <strong>Success</strong> <h2>Message sent successfuly !!</h2>
         </div>
-        : ""    
+        : " "    
     }
         
         <form onSubmit={submitForm}>
