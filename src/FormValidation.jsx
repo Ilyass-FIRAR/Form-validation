@@ -1,3 +1,6 @@
+import {useRef,useState} from "react"; 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 export default function FormValidation(){
     const name=useRef()
     const email=useRef()
@@ -5,14 +8,41 @@ export default function FormValidation(){
     const acceptAllConditions=useRef()
 
 
+const [isFormSent , setIsFormSent] = useState('false');
+const resetForm = () =>{
+    name.current.value = ""
+    email.current.value = ""
+    message.current.value = ""
+    acceptAllConditions.current.value = false
+}
     const submitForm =(e)=>{
         e.preventDefault();
+        const nameValue = name.current.value;
+        const emailValue = email.current.value;
+        const messageValue = message.current.value;
+        const acceptAllConditionsValue = acceptAllConditions.current.checked;
+        console.log({
+            nameValue,
+            emailValue,
+            messageValue,
+            acceptAllConditionsValue
+        })
+            setIsFormSent("true");
+            resetForm()
     }
 return(
-    <div>
+    <div className={'container-fluid w-75 mx-auto my-5'}>
+        {isFormSent?
+        <div className="alert alert-succes">
+            <strong>Success</strong> Message sent successfuly !!
+        </div>
+        : ""    
+    }
+        
         <form onSubmit={submitForm}>
             <h1>Contact Form</h1>
-        <hr />
+            
+            <hr />
         <div>
             <label className="form-label" htmlFor="name">Name</label>
             <input type="text" id="name" className="form-control" />
@@ -38,9 +68,7 @@ return(
         <button type="submit" className="btn btn-primary w-100 mb-4">Submit</button>
         </form>
         <div>
-            <button>
-                <h1>jkdas</h1>
-            </button>
+           
         </div>
     </div>
 
